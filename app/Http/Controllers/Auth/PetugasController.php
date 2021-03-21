@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Helper\Helper;
 use App\Models\Petugas;
+use App\Models\User;
 
 class PetugasController extends Controller
 {
@@ -46,18 +48,21 @@ class PetugasController extends Controller
             'level' => 'required'
         ]);
 
-        Petugas::create([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'level' => $request->level
-        ]);
-
-        if ($request) {
-            return redirect()->route('petugas.index')->with(['success' => 'Data berhasil ditambahkan!']);
-        } else {
-            return redirect()->route('petugas.index')->with(['error' => 'Data gagal ditambahkan!']);
-        }
+        DB::transaction(function () use($request) {
+            $petugas = Petugas::create([
+                'nama_petugas' => $request->nama_petugas,
+                'username' => $request->username,
+                'password' => $request->password,
+                'level' => $request->level
+            ]);
+    
+            User::create([
+                'id_petugas' => $petugas->id_petugas,
+                'password' => Hash::make($petugas->password),
+                'username' => $petugas->username,
+                'level' => $petugas->level
+            ]);
+        });
 
         return Helper::successMessage($request, 'ditambahkan', 'petugas');
     }
@@ -96,6 +101,7 @@ class PetugasController extends Controller
     public function update(Request $request, $id)
     {
         $petugas = Petugas::findOrFail($id);
+        $user = User::where('id_petugas', $id);
 
         $this->validate($request, [
             'nama_petugas' => 'required|max:35',
@@ -104,12 +110,21 @@ class PetugasController extends Controller
             'level' => 'required'
         ]);
 
-        $petugas->update([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'level' => $request->level
-        ]);
+        DB::transaction(function () use($id, $request, $petugas, $user) {
+            $petugas->update([
+                'nama_petugas' => $request->nama_petugas,
+                'username' => $request->username,
+                'password' => $request->password,
+                'level' => $request->level
+            ]);
+            
+            $user->update([
+                'id_petugas' => $id,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'level' => $request->level
+            ]);
+        });
 
         return Helper::successMessage($request, 'diperbarui', 'petugas');
     }

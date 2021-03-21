@@ -15,12 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('id_petugas')->nullable()->unsigned();
+            $table->char('nisn')->nullable();
+            $table->string('username', 25);
+            $table->string('password', 255);
+            $table->enum('level', ['admin', 'petugas', 'siswa']);
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onDelete('cascade');
+            $table->foreign('nisn')->references('nisn')->on('siswa')->onDelete('cascade');
         });
     }
 
