@@ -138,8 +138,12 @@ class PetugasController extends Controller
     public function destroy($id)
     {
         $petugas = Petugas::findOrFail($id);
+        $user = User::where('id_petugas', $id);
 
-        $petugas->delete();
+        DB::transaction(function () use($user, $petugas){
+            $user->delete();
+            $petugas->delete();
+        });
 
         return Helper::successMessage($petugas, 'dihapus', 'petugas');
     }

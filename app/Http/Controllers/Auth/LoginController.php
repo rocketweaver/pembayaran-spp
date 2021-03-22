@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PembayaranController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('index');
     }
 
     /**
@@ -35,7 +36,15 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (!auth()->attempt($request->only('username', 'password'))) {
+            return back()->with('status', 'Data tidak valid.');
+        }
+        return redirect()->route('dashboard.index');
     }
 
     /**

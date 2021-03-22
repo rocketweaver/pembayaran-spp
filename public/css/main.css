@@ -25,9 +25,9 @@ body {
   font-size: 15px;
   color: #676a6d; }
 
-a {
+a, .href-btn {
   color: #3287B2; }
-  a:hover, a:focus {
+  a:hover, .href-btn:hover, a:focus, .href-btn:focus {
     color: #3b98c8;
     text-decoration: none; }
 
@@ -1782,6 +1782,11 @@ ul.activity-timeline > li {
 
 .border-red {
   border: 1px solid #F9354C
+}
+
+.href-btn {
+  background: white;
+  border: none
 }
 
 .table thead tr th {
