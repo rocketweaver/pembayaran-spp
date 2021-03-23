@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label for="id_kelas" class="control-label sr-only">Kelas</label>
-                            <input type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{old('kelas')}}">
+                            <input type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{old('id_kelas')}}">
                             @error('id_kelas')
                                 <small class="text-danger">
                                     {{$message}}

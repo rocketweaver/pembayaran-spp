@@ -34,13 +34,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    // ];
+    
+    public function getPetugas($id)
+    {
+        return $this->hasOne(Petugas::class, 'id_petugas', $id);
+    }
 }

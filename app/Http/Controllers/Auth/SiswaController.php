@@ -64,8 +64,8 @@ class SiswaController extends Controller
     
             User::create([
                 'nisn' => $siswa->nisn,
-                'password' => $siswa->nis,
                 'username' => $siswa->nis,
+                'password' => Hash::make($siswa->nis),
                 'level' => 'siswa'
             ]);
         });
@@ -102,9 +102,41 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nisn)
     {
-        //
+        $siswa = Siswa::findOrFail($nisn);
+        $user = User::where('nisn', $nisn);
+
+        $this->validate($request, [
+            'nisn' => 'required|max:10',
+            'nis' => 'required|max:8',
+            'nama' => 'required|max:35',
+            'id_kelas' => 'required|integer',
+            'alamat' => 'required',
+            'no_telp' => 'required|max:13',
+            'id_spp' => 'required|integer'
+        ]);
+
+        DB::transaction(function () use($id, $request, $siswa, $user) {
+            $siswa->update([
+                'nisn' => $request->nisn,
+                'nis' => $request->nis,
+                'nama' => $request->nama,
+                'id_kelas' => $request->id_kelas,
+                'alamat' => $request->alamat,
+                'no_telp' => $request->no_telp,
+                'id_spp' => $request->id_spp
+            ]);
+            
+            $user->update([
+                'nisn' => $request->nisn,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'level' => $request->level
+            ]);
+        });
+
+        return Helper::successMessage($request, 'diperbarui', 'siswa');
     }
 
     /**
