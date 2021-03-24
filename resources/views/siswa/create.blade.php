@@ -45,7 +45,15 @@
                         </div>
                         <div class="form-group">
                             <label for="id_kelas" class="control-label sr-only">Kelas</label>
-                            <input type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{old('id_kelas')}}">
+                            <select type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{old('id_kelas')}}">
+                            @if (count($kelas) == 0)
+                                <option>Pilihan tidak tersedia.</option>
+                            @else
+                                @foreach ($kelas as $item)
+                                    <option value="{{$item->id_kelas}}">{{$item->nama_kelas}}</option>
+                                @endforeach
+                            @endif
+                            </select>
                             @error('id_kelas')
                                 <small class="text-danger">
                                     {{$message}}
@@ -72,7 +80,15 @@
                         </div>
                         <div class="form-group">
                             <label for="id_spp" class="control-label sr-only">SPP</label>
-                            <input name="id_spp" class="form-control @error('id_spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP" value="{{old('id_spp')}}">
+                            <select name="id_spp" class="form-control @error('id_spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP" value="{{old('id_spp')}}">
+                                @if (count($spp) == 0)
+                                    <option>Pilihan tidak tersedia.</option>
+                                @else
+                                    @foreach ($spp as $item)
+                                        <option value="{{$item->id_spp}}">{{$item->nominal}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
                             @error('id_spp')
                                 <small class="text-danger">
                                     {{$message}}

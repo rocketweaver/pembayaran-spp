@@ -25,6 +25,17 @@ use App\Http\Controllers\Auth\SppController;
 Route::resource('login', LoginController::class);
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
+Route::middleware(['auth', 'level.checker:admin, petugas, siswa'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('history-pembayaran', HistoryPembayaranController::class);
+});
+
+Route::middleware(['auth', 'level.checker:admin, petugas'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('history-pembayaran', HistoryPembayaranController::class);
+    Route::resource('pembayaran', PembayaranController::class);
+});
+
 Route::middleware(['auth', 'level.checker:admin'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('history-pembayaran', HistoryPembayaranController::class);
@@ -35,16 +46,7 @@ Route::middleware(['auth', 'level.checker:admin'])->group(function () {
     Route::resource('spp', SppController::class);
 });
 
-Route::middleware(['auth', 'level.checker:admin, petugas'])->group(function () {
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('history-pembayaran', HistoryPembayaranController::class);
-    Route::resource('pembayaran', PembayaranController::class);
-});
 
-Route::middleware(['auth', 'level.checker:admin, petugas, siswa'])->group(function () {
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('history-pembayaran', HistoryPembayaranController::class);
-});
 
 // Route::middleware(['auth', 'level.checker:admin'])->group(function () {
 //     Route::resource('dashboard', DashboardController::class);

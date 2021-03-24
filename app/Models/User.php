@@ -35,8 +35,13 @@ class User extends Authenticatable
         'password',
     ];
     
-    public function getPetugas($id)
+    public function petugas()
     {
-        return $this->hasOne(Petugas::class, 'id_petugas', $id);
+        return $this->hasOne(Petugas::class, 'id_petugas', 'id_petugas');
+    }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'nisn', 'nisn');
     }
 }

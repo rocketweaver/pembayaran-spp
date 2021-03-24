@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Spp;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +32,9 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.create');
+        $kelas = Kelas::all();
+        $spp = Spp::all();
+        return view('siswa.create', ['kelas' => $kelas, 'spp' => $spp]);
     }
 
     /**
