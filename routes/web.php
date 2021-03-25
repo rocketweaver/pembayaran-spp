@@ -22,6 +22,10 @@ use App\Http\Controllers\Auth\SppController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('index');
+});
+
 Route::resource('login', LoginController::class);
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -45,15 +49,3 @@ Route::middleware(['auth', 'level.checker:admin'])->group(function () {
     Route::resource('siswa', SiswaController::class);
     Route::resource('spp', SppController::class);
 });
-
-
-
-// Route::middleware(['auth', 'level.checker:admin'])->group(function () {
-//     Route::resource('dashboard', DashboardController::class);
-//     Route::resource('history-pembayaran', HistoryPembayaranController::class);
-//     Route::resource('kelas', KelasController::class);
-//     Route::resource('pembayaran', PembayaranController::class);
-//     Route::resource('petugas', PetugasController::class);
-//     Route::resource('siswa', SiswaController::class);
-//     Route::resource('spp', SppController::class);
-// });
