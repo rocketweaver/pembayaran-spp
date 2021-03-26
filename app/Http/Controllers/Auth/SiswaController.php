@@ -85,7 +85,6 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -94,9 +93,13 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nisn)
     {
-        //
+        $siswa = Siswa::find($nisn);
+        $kelas = Kelas::all();
+        $spp = Spp::all();
+
+        return view('siswa.edit', ['kelas' => $kelas,'siswa' => $siswa, 'spp' => $spp]);
     }
 
     /**
@@ -121,7 +124,7 @@ class SiswaController extends Controller
             'id_spp' => 'required|integer'
         ]);
 
-        DB::transaction(function () use($id, $request, $siswa, $user) {
+        DB::transaction(function () use($request, $siswa, $user) {
             $siswa->update([
                 'nisn' => $request->nisn,
                 'nis' => $request->nis,
@@ -133,7 +136,6 @@ class SiswaController extends Controller
             ]);
             
             $user->update([
-                'nisn' => $request->nisn,
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'level' => $request->level
@@ -152,12 +154,8 @@ class SiswaController extends Controller
     public function destroy($nisn)
     {
         $siswa = Siswa::findOrFail($nisn);
-        $user = User::where('nisn', $nisn);
 
-        DB::transaction(function () use($user, $siswa){
-            $user->delete();
-            $siswa->delete();
-        });
+        $siswa->delete();
 
         return Helper::successMessage($siswa, 'dihapus', 'siswa');
     }

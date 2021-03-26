@@ -8,7 +8,7 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
-								<div class="logo text-center"><img src="{{asset('img/logo-dark.png')}}" alt="Klorofil Logo"></div>
+								<div class="logo text-center"><img src="{{asset('img/logo.png')}}" alt="Klorofil Logo"></div>
 								<p class="lead">Login to your account</p>
 							</div>
 							<form class="form-auth-small" action="{{route('login.store')}}" method="POST">

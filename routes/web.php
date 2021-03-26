@@ -5,7 +5,7 @@ use App\Http\Middlewae\LevelChecker;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\HistoryPembayaranController;
 use App\Http\Controllers\Auth\KelasController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PembayaranController;
 use App\Http\Controllers\Auth\PetugasController;

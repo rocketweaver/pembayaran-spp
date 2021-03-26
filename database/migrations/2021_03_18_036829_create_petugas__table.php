@@ -29,6 +29,6 @@ class CreatePetugasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('petugas_');
+        Schema::dropIfExists('petugas');
     }
 }

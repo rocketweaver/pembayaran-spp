@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_petugas')->references('id_petugas')->on('petugas');
-            $table->foreign('nisn')->references('nisn')->on('siswa');
+            $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('nisn')->references('nisn')->on('siswa')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

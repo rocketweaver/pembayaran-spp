@@ -110,7 +110,7 @@ class PetugasController extends Controller
             'level' => 'required'
         ]);
 
-        DB::transaction(function () use($id, $request, $petugas, $user) {
+        DB::transaction(function () use($request, $petugas, $user) {
             $petugas->update([
                 'nama_petugas' => $request->nama_petugas,
                 'username' => $request->username,
@@ -119,7 +119,6 @@ class PetugasController extends Controller
             ]);
             
             $user->update([
-                'id_petugas' => $id,
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'level' => $request->level
@@ -138,12 +137,8 @@ class PetugasController extends Controller
     public function destroy($id)
     {
         $petugas = Petugas::findOrFail($id);
-        $user = User::where('id_petugas', $id);
 
-        DB::transaction(function () use($user, $petugas){
-            $user->delete();
-            $petugas->delete();
-        });
+        $petugas->delete();
 
         return Helper::successMessage($petugas, 'dihapus', 'petugas');
     }
