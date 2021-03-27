@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middlewae\LevelChecker;
 use App\Http\Controllers\Auth\DashboardController;
-use App\Http\Controllers\Auth\HistoryPembayaranController;
 use App\Http\Controllers\Auth\KelasController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PembayaranController;
 use App\Http\Controllers\Auth\PetugasController;
@@ -29,23 +28,24 @@ Route::get('/', function () {
 Route::resource('login', LoginController::class);
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::middleware(['auth', 'level.checker:admin, petugas, siswa'])->group(function () {
+Route::middleware(['auth', 'levelchecker:admin'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
-    Route::resource('history-pembayaran', HistoryPembayaranController::class);
-});
-
-Route::middleware(['auth', 'level.checker:admin, petugas'])->group(function () {
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('history-pembayaran', HistoryPembayaranController::class);
-    Route::resource('pembayaran', PembayaranController::class);
-});
-
-Route::middleware(['auth', 'level.checker:admin'])->group(function () {
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('history-pembayaran', HistoryPembayaranController::class);
     Route::resource('kelas', KelasController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::get('export-pdf', [PembayaranController::class, 'exportPdf'])->name('pembayaran.export');
     Route::resource('petugas', PetugasController::class);
     Route::resource('siswa', SiswaController::class);
     Route::resource('spp', SppController::class);
 });
+
+Route::middleware(['auth', 'levelchecker:admin,petugas'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('pembayaran', PembayaranController::class);
+    Route::get('export-pdf', [PembayaranController::class, 'exportPdf'])->name('pembayaran.export');
+});
+
+Route::middleware(['auth', 'levelchecker:admin,petugas,siswa'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('pembayaran', PembayaranController::class);
+});
+

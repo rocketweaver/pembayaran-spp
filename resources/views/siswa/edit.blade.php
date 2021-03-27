@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('tab-title')
-    Data Siswa - Tambah Data
+    Data Siswa - Edit Data
 @endsection
 @section('page-title')
-    <h3 class="page-title"><a href="{{route('siswa.index')}}">Data Siswa</a> > Tambah Data</h3>
+    <h3 class="page-title"><a href="{{route('siswa.index')}}">Data Siswa</a> > Edit Data</h3>
 @endsection
 @section('content') 
     <div class="row">
         <div class="col-md-12 mx-auto">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Formulir Tambah Data</h3>
+                    <h3 class="panel-title">Formulir Edit Data</h3>
                 </div>
                 <div class="panel-body">
                     <form class="form-auth-small" action="{{route('siswa.update', $siswa->nisn)}}" method="POST">
@@ -46,16 +46,17 @@
                         </div>
                         <div class="form-group">
                             <label for="id_kelas" class="control-label sr-only">Kelas</label>
-                            <select type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{$siswa->kelas->nama_kelas}}">
+                            <select type="text" name="kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas">
                             @if (count($kelas) == 0)
                                 <option>Pilihan tidak tersedia.</option>
                             @else
+                                <option value="" disabled selected>Pilih kelas</option>
                                 @foreach ($kelas as $item)
                                     <option value="{{$item->id_kelas}}">{{$item->nama_kelas}}</option>
                                 @endforeach
                             @endif
                             </select>
-                            @error('id_kelas')
+                            @error('kelas')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>
@@ -72,8 +73,8 @@
                         </div>
                         <div class="form-group">
                             <label for="no_telp" class="control-label sr-only">Nomor Telepon</label>
-                            <input name="no_telp" class="form-control @error('no_telp') border-red @enderror" id="no_telp" placeholder="Ketikkan nomor telepon" value="{{$siswa->no_telp}}">
-                            @error('no_telp')
+                            <input name="nomor_telepon" class="form-control @error('nomor_telepon') border-red @enderror" id="no_telp" placeholder="Ketikkan nomor telepon" value="{{$siswa->no_telp}}">
+                            @error('nomor_telpon')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>
@@ -81,22 +82,23 @@
                         </div>
                         <div class="form-group">
                             <label for="id_spp" class="control-label sr-only">SPP</label>
-                            <select name="id_spp" class="form-control @error('id_spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP" value="$siswa->spp->nominal">
+                            <select name="spp" class="form-control @error('spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP">
                                 @if (count($spp) == 0)
                                     <option>Pilihan tidak tersedia.</option>
                                 @else
+                                    <option value="" disabled selected>Pilih SPP</option>
                                     @foreach ($spp as $item)
-                                        <option value="{{$item->id_spp}}">{{$item->nominal}}</option>
+                                        <option value="{{$item->id_spp}}">{{$item->tahun}}</option>
                                     @endforeach
                                 @endif
                             </select>
-                            @error('id_spp')
+                            @error('spp')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Tambah Data</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Perbarui Data</button>
                     </form>
                 </div>
             </div>

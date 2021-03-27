@@ -6,7 +6,7 @@
 
 @section('page-title')
     <h3 class="page-title">
-        <a href="">Data Siswa</a>
+        Data Siswa
     </h3>
 @endsection
 
@@ -61,6 +61,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$siswa->links()}}
         </div>
     </div>
 @endsection

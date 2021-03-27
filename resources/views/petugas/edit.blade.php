@@ -54,7 +54,7 @@
                             @enderror
                         </div>
                         <div class="form-group" id="select-input">
-                            <label for="level">Level</label>
+                            <label for="level" class="control-label sr-only">Level</label>
                             <select id="level" name="level" class="form-control @error('level') border-red @enderror" id="form-control">
                                 <option value="admin">Admin</option>
                                 <option value="petugas">Petugas</option>

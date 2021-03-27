@@ -16,7 +16,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::orderBy('kompetensi_keahlian', 'desc')->paginate(10);
         return view('kelas.index', ['kelas' => $kelas]);
     }
 

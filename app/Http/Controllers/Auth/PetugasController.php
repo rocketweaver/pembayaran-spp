@@ -19,7 +19,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $petugas = Petugas::all();
+        $petugas = Petugas::orderBy('level')->paginate(10);
         return view('petugas.index', ['petugas' => $petugas]);
     }
 
@@ -75,7 +75,9 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        //
+        $petugas = Petugas::find($id);
+
+        return view('petugas.index', ['petugas' => $petugas]);
     }
 
     /**

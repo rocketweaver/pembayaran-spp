@@ -63,8 +63,8 @@
 			<div id="sidebar-nav" class="sidebar">
 				<div class="sidebar-scroll">
 					<nav>
-						<ul class="nav">
-							<li><a href="{{route('dashboard.index')}}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<ul class="nav mt-quarter">
+							<li><a href="{{route('dashboard.index')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 							@if (auth()->user()->level == 'admin')
 								<li>
 									<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-database"></i> <span>Kumpulan Tabel</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -76,12 +76,16 @@
 											<li><a href="{{route('spp.index')}}" class="">SPP</a></li>
 										</ul>
 									</div>
-									<li><a href="{{route('pembayaran.index')}}"><i class="lnr lnr-enter-down"></i> <span>Pembayaran SPP</span></a></li>
+									<li><a href="{{route('pembayaran.create')}}"><i class="lnr lnr-enter-down"></i> <span>Pembayaran SPP</span></a></li>
 								</li>	
-							@elseif (auth()->user()->level == 'petugas')
-								<li><a href="{{route('pembayaran.index')}}"><i class="lnr lnr-enter-down"></i> <span>Pembayaran SPP</span></a></li>
+							@elseif (auth()->user()->level == 'petugas' || auth()->user()->level == 'admin')
+								<li><a href="{{route('pembayaran.create')}}"><i class="lnr lnr-enter-down"></i> <span>Pembayaran SPP</span></a></li>
 							@endif
-							<li><a href="{{route('history-pembayaran.index')}}"><i class="lnr lnr-history"></i> <span>Riwayat Pembayaran</span></a></li>
+							@if (auth()->user()->level != 'siswa')
+								<li><a href="{{route('pembayaran.index')}}"><i class="lnr lnr-history"></i> <span>Riwayat Pembayaran</span></a></li>
+							@else
+								<li><a href="{{route('pembayaran.show', auth()->user()->nisn)}}"><i class="lnr lnr-history"></i> <span>Riwayat Pembayaran</span></a></li>
+							@endif
 						</ul>
 					</nav>
 				</div>

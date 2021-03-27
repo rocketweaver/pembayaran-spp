@@ -21,9 +21,9 @@ class LevelChecker
 
         if (in_array($request->user()->level, $levels)) {
             return $next($request);
+        } else {
+            return abort(403, 'Halaman tidak ditemukan.');
         }
-
-        return redirect()->route('login.index');
     }
 
     // private function userAccessRole()

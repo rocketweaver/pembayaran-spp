@@ -45,16 +45,17 @@
                         </div>
                         <div class="form-group">
                             <label for="id_kelas" class="control-label sr-only">Kelas</label>
-                            <select type="text" name="id_kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas" value="{{old('id_kelas')}}">
+                            <select type="text" name="kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas">
                             @if (count($kelas) == 0)
                                 <option>Pilihan tidak tersedia.</option>
                             @else
+                                <option value="" disabled selected>Pilih kelas</option>
                                 @foreach ($kelas as $item)
                                     <option value="{{$item->id_kelas}}">{{$item->nama_kelas}}</option>
                                 @endforeach
                             @endif
                             </select>
-                            @error('id_kelas')
+                            @error('kelas')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>
@@ -62,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="control-label sr-only">Alamat</label>
-                            <textarea name="alamat" class="form-control @error('alamat') border-red @enderror" id="alamat" rows="4" placeholder="Ketikkan alamat lengkap" value="{{old('alamat')}}"></textarea>
+                            <textarea name="alamat" class="form-control @error('alamat') border-red @enderror" id="alamat" rows="4" placeholder="Ketikkan alamat lengkap">{{old('alamat')}}</textarea>
                             @error('alamat')
                                 <small class="text-danger">
                                     {{$message}}
@@ -71,8 +72,8 @@
                         </div>
                         <div class="form-group">
                             <label for="no_telp" class="control-label sr-only">Nomor Telepon</label>
-                            <input name="no_telp" class="form-control @error('no_telp') border-red @enderror" id="no_telp" placeholder="Ketikkan nomor telepon" value="{{old('no_telp')}}">
-                            @error('no_telp')
+                            <input name="nomor_telepon" class="form-control @error('nomor_telepon') border-red @enderror" id="no_telp" placeholder="Ketikkan nomor telepon" value="{{old('no_telp')}}">
+                            @error('nomor_telepon')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>
@@ -80,16 +81,17 @@
                         </div>
                         <div class="form-group">
                             <label for="id_spp" class="control-label sr-only">SPP</label>
-                            <select name="id_spp" class="form-control @error('id_spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP" value="{{old('id_spp')}}">
+                            <select name="spp" class="form-control @error('spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP">
                                 @if (count($spp) == 0)
                                     <option>Pilihan tidak tersedia.</option>
                                 @else
+                                    <option value="" disabled selected>Pilih SPP</option>
                                     @foreach ($spp as $item)
-                                        <option value="{{$item->id_spp}}">{{$item->nominal}}</option>
+                                        <option value="{{$item->id_spp}}">{{$item->tahun}}</option>
                                     @endforeach
                                 @endif
                             </select>
-                            @error('id_spp')
+                            @error('spp')
                                 <small class="text-danger">
                                     {{$message}}
                                 </small>

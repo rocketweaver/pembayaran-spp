@@ -21,7 +21,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('id_kelas')->paginate(10);
         return view('siswa.index', ['siswa' => $siswa]);
     }
 
@@ -48,11 +48,11 @@ class SiswaController extends Controller
         $this->validate($request, [
             'nisn' => 'required|max:10',
             'nis' => 'required|max:8',
-            'nama' => 'required|max:35',
-            'id_kelas' => 'required|integer',
+            'nama' => 'required|string|max:35',
+            'kelas' => 'required',
             'alamat' => 'required',
-            'no_telp' => 'required|max:13',
-            'id_spp' => 'required|integer'
+            'nomor_telepon' => 'required|max:13',
+            'spp' => 'required'
         ]);
 
         DB::transaction(function () use($request) {
@@ -60,12 +60,12 @@ class SiswaController extends Controller
                 'nisn' => $request->nisn,
                 'nis' => $request->nis,
                 'nama' => $request->nama,
-                'id_kelas' => $request->id_kelas,
+                'id_kelas' => $request->kelas,
                 'alamat' => $request->alamat,
-                'no_telp' => $request->no_telp,
-                'id_spp' => $request->id_spp
+                'no_telp' => $request->nomor_telepon,
+                'id_spp' => $request->spp
             ]);
-    
+            
             User::create([
                 'nisn' => $siswa->nisn,
                 'username' => $siswa->nis,
@@ -83,9 +83,9 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-    }
+    // public function show($id)
+    // {
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -117,11 +117,11 @@ class SiswaController extends Controller
         $this->validate($request, [
             'nisn' => 'required|max:10',
             'nis' => 'required|max:8',
-            'nama' => 'required|max:35',
-            'id_kelas' => 'required|integer',
+            'nama' => 'required|string|max:35',
+            'kelas' => 'required',
             'alamat' => 'required',
-            'no_telp' => 'required|max:13',
-            'id_spp' => 'required|integer'
+            'nomor_telepon' => 'required|max:13',
+            'spp' => 'required'
         ]);
 
         DB::transaction(function () use($request, $siswa, $user) {
@@ -129,16 +129,15 @@ class SiswaController extends Controller
                 'nisn' => $request->nisn,
                 'nis' => $request->nis,
                 'nama' => $request->nama,
-                'id_kelas' => $request->id_kelas,
+                'id_kelas' => $request->kelas,
                 'alamat' => $request->alamat,
-                'no_telp' => $request->no_telp,
-                'id_spp' => $request->id_spp
+                'no_telp' => $request->nomor_telepon,
+                'id_spp' => $request->spp
             ]);
             
             $user->update([
-                'username' => $request->username,
-                'password' => Hash::make($request->password),
-                'level' => $request->level
+                'username' => $request->nis,
+                'password' => Hash::make($request->nis),
             ]);
         });
 

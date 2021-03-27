@@ -16,7 +16,7 @@ class SppController extends Controller
      */
     public function index()
     {
-        $spp = Spp::all();
+        $spp = Spp::paginate();
         return view('spp.index', ['spp' => $spp]);
     }
 
