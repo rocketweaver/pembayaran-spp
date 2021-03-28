@@ -43,10 +43,18 @@
                             <td>{{$item->nisn}}</td>
                             <td>{{$item->nis}}</td>
                             <td>{{$item->nama}}</td>
-                            <td>{{$item->kelas->nama_kelas}}</td>
+                            @if (is_null($item->id_kelas))
+                                <td class="text-danger">Kosong</td>
+                            @else
+                                <td>{{$item->kelas->nama_kelas}}</td>
+                            @endif
                             <td>{{$item->alamat}}</td>
                             <td>{{$item->no_telp}}</td>
-                            <td>{{$item->spp->nominal}}</td>
+                            @if (is_null($item->id_spp))
+                                <td class="text-danger">Kosong</td>
+                            @else
+                                <td>{{$item->spp->nominal}}</td>
+                            @endif
                             <td>
                                 <form action="{{route('siswa.destroy', $item->nisn)}}" method="post">
                                     <a href="{{route('siswa.edit', $item->nisn)}}">
