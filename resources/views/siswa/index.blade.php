@@ -16,8 +16,19 @@
             <h3 class="panel-title">Kumpulan Data Siswa</h3>
         </div>
         <div class="panel-body">
+            <div class="row">
+                <form action="{{route('siswa.index')}}" class="form-auth-small" method="GET">
+                    <div class="col-md-2">
+                        <label for="nama_or_kelas" class="control-label sr-only">Nama Kelas</label>
+                        <input type="text" name="nama_or_kelas" class="form-control" id="nama_or_kelas" placeholder="Ketikkan nama atau kelas siswa">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success btn-md">Search</button>
+                    </div>
+                </form>   
+            </div>
             <a href="{{route('siswa.create')}}">
-                <button type="button" class="btn btn-primary"><i class="fa fa-plus-square mr-1"></i> Tambah </button>
+                <button type="button" class="btn btn-primary mt-quarter"><i class="fa fa-plus-square mr-1"></i> Tambah </button>
             </a>
             <table class="table table-bordered mt-2 text-center">
                 <thead>
@@ -35,6 +46,9 @@
                 </thead>
                 <tbody>
                     @php
+                        if (isset($filteredSiswa)) {
+                            $siswa = $filteredSiswa;
+                        }
                         $i = 1;
                     @endphp
                     @foreach ($siswa as $item)

@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="id_kelas" class="control-label sr-only">Kelas</label>
-                            <select type="text" name="kelas" class="form-control @error('kelas') border-red @enderror" id="id_kelas" placeholder="Pilih kelas">
+                            <select type="text" name="id_kelas" class="form-control" id="id_kelas" placeholder="Pilih kelas">
                             @if (count($kelas) == 0)
                                 <option>Pilihan tidak tersedia.</option>
                             @else
@@ -56,11 +56,6 @@
                                 @endforeach
                             @endif
                             </select>
-                            @error('kelas')
-                                <small class="text-danger">
-                                    {{$message}}
-                                </small>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="control-label sr-only">Alamat</label>
@@ -82,7 +77,7 @@
                         </div>
                         <div class="form-group">
                             <label for="id_spp" class="control-label sr-only">SPP</label>
-                            <select name="spp" class="form-control @error('spp') border-red @enderror" id="id_spp" placeholder="Pilih SPP">
+                            <select name="id_spp" class="form-control" id="id_spp" placeholder="Pilih SPP">
                                 @if (count($spp) == 0)
                                     <option>Pilihan tidak tersedia.</option>
                                 @else
@@ -92,11 +87,6 @@
                                     @endforeach
                                 @endif
                             </select>
-                            @error('spp')
-                                <small class="text-danger">
-                                    {{$message}}
-                                </small>
-                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Perbarui Data</button>
                     </form>

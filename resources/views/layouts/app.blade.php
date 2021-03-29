@@ -49,7 +49,7 @@
 									<li>
 										<form action="{{route('logout')}}" method="POST">
 											@csrf
-											<button type="submit" class="href-btn"><i class="lnr lnr-exit"></i> <span>Logout</span></button>
+											<button type="submit" class="logout-btn"><i class="lnr lnr-exit"></i> <span>Logout</span></button>
 										</form>
 									</li>
 								</ul>

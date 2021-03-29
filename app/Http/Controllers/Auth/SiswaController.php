@@ -19,9 +19,16 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = Siswa::orderBy('id_kelas')->paginate(10);
+        $namaOrKelas = $request->nama_or_kelas;
+        if(!is_null($namaOrKelas)) {
+            $filteredSiswa = Siswa::whereHas('kelas', function ($query) use($namaOrKelas) {
+                $query->where('nama_kelas', 'like', '%'.$namaOrKelas.'%');
+            })->orWhere('nama', 'like', '%'.$namaOrKelas.'%')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(10);
+            return view('siswa.index', ['filteredSiswa' => $filteredSiswa]);
+        }
+        $siswa = Siswa::orderBy('id_kelas')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(10);
         return view('siswa.index', ['siswa' => $siswa]);
     }
 
@@ -118,10 +125,8 @@ class SiswaController extends Controller
             'nisn' => 'required|max:10',
             'nis' => 'required|max:8',
             'nama' => 'required|string|max:35',
-            'kelas' => 'required',
             'alamat' => 'required',
             'nomor_telepon' => 'required|max:13',
-            'spp' => 'required'
         ]);
 
         DB::transaction(function () use($request, $siswa, $user) {
@@ -129,10 +134,10 @@ class SiswaController extends Controller
                 'nisn' => $request->nisn,
                 'nis' => $request->nis,
                 'nama' => $request->nama,
-                'id_kelas' => $request->kelas,
+                'id_kelas' => $request->id_kelas,
                 'alamat' => $request->alamat,
                 'no_telp' => $request->nomor_telepon,
-                'id_spp' => $request->spp
+                'id_spp' => $request->id_spp
             ]);
             
             $user->update([

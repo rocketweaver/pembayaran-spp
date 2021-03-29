@@ -14,9 +14,14 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kelas = Kelas::orderBy('kompetensi_keahlian', 'desc')->paginate(10);
+        if(!is_null($request->nama_kelas)) {
+            $filteredKelas = Kelas::where('nama_kelas', 'like', '%'.$request->nama_kelas.'%')->orderBy('kompetensi_keahlian', 'asc')->orderBy('nama_kelas', 'asc')->paginate(10);
+            return view('kelas.index', ['filteredKelas' => $filteredKelas]);
+        }
+
+        $kelas = Kelas::orderBy('kompetensi_keahlian', 'asc')->orderBy('nama_kelas', 'asc')->paginate(10);
         return view('kelas.index', ['kelas' => $kelas]);
     }
 
@@ -57,10 +62,9 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show(Request $request)
+    // {
+    // }
 
     /**
      * Show the form for editing the specified resource.

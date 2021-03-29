@@ -17,9 +17,14 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $petugas = Petugas::orderBy('level')->paginate(10);
+        if(!is_null($request->nama_or_level)) {
+            $filteredPetugas = Petugas::where('level', $request->nama_or_level)->orWhere('nama_petugas', 'like', '%'.$request->nama_or_level.'%')->orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(10);
+            return view('petugas.index', ['filteredPetugas' => $filteredPetugas]);
+        }
+
+        $petugas = Petugas::orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(10);
         return view('petugas.index', ['petugas' => $petugas]);
     }
 

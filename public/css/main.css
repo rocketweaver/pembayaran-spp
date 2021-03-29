@@ -25,9 +25,9 @@ body {
   font-size: 15px;
   color: #676a6d; }
 
-a, .href-btn {
+a, .logout-btn {
   color: #3287B2; }
-  a:hover, .href-btn:hover, a:focus, .href-btn:focus {
+  a:hover, .logout-btn:hover, a:focus, .logout-btn:focus {
     color: #3b98c8;
     text-decoration: none; }
 
@@ -1787,9 +1787,11 @@ ul.activity-timeline > li {
   border: 1px solid #F9354C
 }
 
-.href-btn {
+.logout-btn {
   background: white;
-  border: none
+  border: none;
+  width: 100%;
+  padding: 10px
 }
 
 .table thead tr th {
