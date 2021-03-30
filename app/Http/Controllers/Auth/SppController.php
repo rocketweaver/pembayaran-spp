@@ -14,9 +14,13 @@ class SppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $spp = Spp::paginate();
+        if(!is_null($request->tahun)) {
+            $filteredSpp = Spp::where('tahun', 'like', '%'.$request->tahun.'%')->orderBy('tahun', 'asc')->paginate(10);
+            return view('spp.index', ['filteredSpp' => $filteredSpp]);
+        }
+        $spp = Spp::orderBy('tahun', 'asc')->paginate(10);
         return view('spp.index', ['spp' => $spp]);
     }
 
@@ -39,8 +43,7 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tahun' => 'required|integer',
-            'nominal' => 'required|integer',
+            'tahun' => 'required|integer'
         ]);
 
         Spp::create([

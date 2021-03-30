@@ -21,7 +21,6 @@ class Pembayaran extends Model
         'tgl_bayar',
         'bulan_dibayar',
         'tahun_dibayar',
-        'id_spp',
         'jumlah_bayar'
     ];
     

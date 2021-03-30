@@ -18,12 +18,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="nominal" class="control-label sr-only">Nominal</label>
-                            <input type="text" name="nominal" class="form-control @error('nominal') border-red @enderror" id="nominal" placeholder="Ketikkan nominal" value="{{old('nominal')}}">
-                            @error('nominal')
-                                <small class="text-danger">
-                                    {{$message}}
-                                </small>
-                            @enderror
+                            <input type="text" name="nominal" class="form-control" id="nominal" value="3600000" readonly>
                         </div>
                         <div class="form-group">
                             <label for="tahun" class="control-label sr-only">Tahun</label>

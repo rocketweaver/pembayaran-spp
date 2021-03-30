@@ -18,9 +18,14 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pembayaran = Pembayaran::orderBy('tgl_bayar')->paginate(10);
+        $bulanOrTahun = $request->bulan_or_tahun; 
+        if (!is_null($bulanOrTahun)) {
+            $filteredPembayaran = Pembayaran::where('bulan_dibayar', 'like', '%'.$bulanOrTahun.'%')->orWhere('tahun_dibayar', 'like', '%'.$bulanOrTahun.'%')->orderBy('tgl_bayar', 'asc')->paginate(10);
+            return view('pembayaran.index', ['filteredPembayaran' => $filteredPembayaran]);
+        }
+        $pembayaran = Pembayaran::orderBy('tgl_bayar', 'asc')->paginate(10);
         return view('pembayaran.index', ['pembayaran' => $pembayaran]);
     }
 
@@ -69,14 +74,8 @@ class PembayaranController extends Controller
                         'tgl_bayar' => $request->tanggal_pembayaran,
                         'bulan_dibayar' => $request->bulan_pembayaran,
                         'tahun_dibayar' => $request->tahun_pembayaran,
-                        'id_spp' => 1,
                         'jumlah_bayar' => $request->jumlah_pembayaran
                     ]);
-
-                    $pembayaran->update([
-                        'id_spp' => $pembayaran->siswa->id_spp
-                    ]);
-                    
                 });
     
                 return Helper::successMessage($request, 'ditambahkan', 'pembayaran');
@@ -136,28 +135,14 @@ class PembayaranController extends Controller
             if (Pembayaran::where('nisn', $request->siswa)->where('bulan_dibayar', $request->bulan_pembayaran)->where('tahun_dibayar', $request->tahun_pembayaran)->exists()) {
                 return back()->with('custom-message', 'Pembayaran telah dilakukan')->with('error-border', 'border-red');
             } else {
-                DB::transaction(function () use($request, $pembayaran) {
-                    $pembayaran->update([
-                        'id_petugas' => $request->petugas,
-                        'nisn' => $request->siswa,
-                        'tgl_bayar' => $request->tanggal_pembayaran,
-                        'bulan_dibayar' => $request->bulan_pembayaran,
-                        'tahun_dibayar' => $request->tahun_pembayaran,
-                        'id_spp' => 1,
-                        'jumlah_bayar' => $request->jumlah_pembayaran
-                    ]);
-                    if (is_null($pembayaran->nisn)) {
-                        $pembayaran->update([
-                            'id_spp' => null
-                        ]);
-                    } else {
-                        $pembayaran->update([
-                            'id_spp' => $pembayaran->siswa->id_spp
-                        ]);
-                    }
-                    
-                });
-    
+                $pembayaran->update([
+                    'id_petugas' => $request->petugas,
+                    'nisn' => $request->siswa,
+                    'tgl_bayar' => $request->tanggal_pembayaran,
+                    'bulan_dibayar' => $request->bulan_pembayaran,
+                    'tahun_dibayar' => $request->tahun_pembayaran,
+                    'jumlah_bayar' => $request->jumlah_pembayaran
+                ]);
                 return Helper::successMessage($request, 'diperbarui', 'pembayaran');
             } 
         }

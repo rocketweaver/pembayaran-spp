@@ -20,13 +20,11 @@ class CreatePembayaranTable extends Migration
             $table->date('tgl_bayar');
             $table->string('bulan_dibayar', 8);
             $table->string('tahun_dibayar', 4);
-            $table->integer('id_spp')->unsigned()->nullable();
             $table->unsignedInteger('jumlah_bayar');
         });
 
         Schema::table('pembayaran', function (Blueprint $table) {
             $table->foreign('nisn')->references('nisn')->on('siswa')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('id_spp')->references('id_spp')->on('siswa')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onUpdate('cascade')->onDelete('set null');
         });
     }

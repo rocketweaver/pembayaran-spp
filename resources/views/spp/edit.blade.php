@@ -19,7 +19,7 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="nominal" class="control-label sr-only">Nominal</label>
-                            <input type="text" name="nominal" class="form-control @error('nominal') border-red @enderror" id="nominal" placeholder="Ubah nama spp" value="{{$spp->nominal}}">
+                            <input type="text" name="nominal" class="form-control @error('nominal') border-red @enderror" id="nominal" value="{{$spp->nominal}}" readonly>
                             @error('nominal')
                                 <small class="text-danger">
                                     {{$message}}

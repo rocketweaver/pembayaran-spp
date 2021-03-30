@@ -16,8 +16,19 @@
             <h3 class="panel-title">Kumpulan Data SPP</h3>
         </div>
         <div class="panel-body">
+            <div class="row">
+                <form action="{{route('spp.index')}}" class="form-auth-small" method="GET">
+                    <div class="col-md-2">
+                        <label for="tahun" class="control-label sr-only">Tahun</label>
+                        <input type="text" name="tahun" class="form-control" id="tahun" placeholder="Ketikkan tahun SPP">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success btn-md">Search</button>
+                    </div>
+                </form>   
+            </div>
             <a href="{{route('spp.create')}}">
-                <button type="button" class="btn btn-primary"><i class="fa fa-plus-square mr-1"></i> Tambah </button>
+                <button type="button" class="btn btn-primary mt-quarter"><i class="fa fa-plus-square mr-1"></i> Tambah </button>
             </a>
             <table class="table table-bordered mt-2 text-center">
                 <thead>
@@ -30,6 +41,9 @@
                 </thead>
                 <tbody>
                     @php
+                        if (isset($filteredSpp)) {
+                            $spp = $filteredSpp;
+                        }
                         $i = 1;
                     @endphp
                     @foreach ($spp as $item)

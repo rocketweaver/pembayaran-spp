@@ -16,9 +16,20 @@
             <h3 class="panel-title">Riwayat Pembayaran</h3>
         </div>
         <div class="panel-body">
+            <div class="row">
+                <form action="{{route('pembayaran.index')}}" class="form-auth-small" method="GET">
+                    <div class="col-md-2">
+                        <label for="bulan_or_tahun" class="control-label sr-only">Bulan atau Tahun</label>
+                        <input type="text" name="bulan_or_tahun" class="form-control" id="bulan_or_tahun" placeholder="Ketikkan bulan atau tahun pembayaran">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success btn-md">Search</button>
+                    </div>
+                </form>   
+            </div>
             @if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
                 <a href="{{route('pembayaran.export')}}">
-                    <button type="button" class="btn btn-danger"><i class="fa fa-print mr-1"></i> Cetak </button>
+                    <button type="button" class="btn btn-default mt-quarter"><i class="fa fa-print mr-1"></i> Cetak </button>
                 </a>
             @endif
             <table class="table table-bordered mt-2 text-center">
@@ -39,6 +50,9 @@
                 </thead>
                 <tbody>
                     @php
+                        if (isset($filteredPembayaran)) {
+                            $pembayaran = $filteredPembayaran;
+                        }
                         $i = 1;
                     @endphp
                     @foreach ($pembayaran as $item)
