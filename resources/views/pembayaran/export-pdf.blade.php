@@ -16,7 +16,8 @@
             padding: 10px;
             border: 1px solid black;
             border-collapse: collapse;
-            text-align: center
+            text-align: center;
+            font-size: 12px
         }
     </style>
     <h1>Laporan Pembayaran SPP</h1>
@@ -56,9 +57,9 @@
                     @if (is_null($item->nisn))
                         <td class="text-danger">Kosong</td>
                     @else
-                        <td>{{$item->siswa->spp->nominal}}</td>
+                        <td>Rp{{number_format($item->siswa->spp->nominal, 2, ',', '.')}}</td>
                     @endif
-                    <td>{{$item->jumlah_bayar}}</td>
+                    <td>Rp{{number_format($item->jumlah_bayar, 2, ',', '.')}}</td>
                 </tr>                            
             @endforeach
         </tbody>

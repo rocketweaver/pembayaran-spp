@@ -41,4 +41,17 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Detail</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Nominal : <b class="ml-half-1">Rp{{number_format($spp->nominal, 2, ',', '.')}}</b></p>
+                    <p>Tahun : <b class="ml-half-1">{{$spp->tahun}}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

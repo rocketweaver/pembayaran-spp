@@ -94,4 +94,23 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Detail</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Nama siswa : <b class="ml-half-1">{{$siswa->nama}}</b></p>
+                    <p>NISN : <b class="ml-half-1">{{$siswa->nisn}}</b></p>
+                    <p>NIS: <b class="ml-half-1">{{$siswa->nis}}</b></p>
+                    <p>Kelas: <b class="ml-half-1">{{$siswa->kelas->nama_kelas}}</b></p>
+                    <p>Alamat : <b class="ml-half-1">{{$siswa->alamat}}</b></p>
+                    <p>No. Telepon : <b class="ml-half-1">{{$siswa->no_telp}}</b></p>
+                    <p>Nominal SPP : <b class="ml-half-1">{{$siswa->spp->nominal}}</b></p>
+                    <p>Tahun SPP : <b class="ml-half-1">{{$siswa->spp->tahun}}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

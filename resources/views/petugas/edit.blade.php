@@ -71,4 +71,19 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Detail</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Nama petugas : <b class="ml-half-1">{{$petugas->nama_petugas}}</b></p>
+                    <p>Username : <b class="ml-half-1">{{$petugas->username}}</b></p>
+                    <p>Password : <b class="ml-half-1">{{$petugas->password}}</b></p>
+                    <p>Level : <b class="ml-half-1">{{$petugas->level}}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

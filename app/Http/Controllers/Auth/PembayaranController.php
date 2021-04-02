@@ -98,6 +98,16 @@ class PembayaranController extends Controller
         }
     }
 
+    public function detail($id)
+    {
+        if(auth()->user()->level == 'siswa') {
+            $pembayaran = Pembayaran::find($id);
+            return view('pembayaran.detail', ['pembayaran' => $pembayaran]);
+        }
+
+        return view('pembayaran.index');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

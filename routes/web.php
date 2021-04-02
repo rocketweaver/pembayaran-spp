@@ -47,5 +47,9 @@ Route::middleware(['auth', 'levelchecker:admin,petugas'])->group(function () {
 Route::middleware(['auth', 'levelchecker:admin,petugas,siswa'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::get('detail/{id}', [PembayaranController::class, 'detail'])->name('pembayaran.detail');
 });
 
+Route::middleware(['auth', 'levelchecker: siswa'])->group(function () {
+    
+});

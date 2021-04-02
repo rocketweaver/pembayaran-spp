@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{$item->tahun}}</td>
-                            <td>{{$item->nominal}}</td>
+                            <td>Rp{{number_format($item->nominal, 2, ',', '.')}}</td>
                             <td>
                                 <form action="{{route('spp.destroy', $item->id_spp)}}" method="post">
                                     <a href="{{route('spp.edit', $item->id_spp)}}">

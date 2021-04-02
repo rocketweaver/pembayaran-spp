@@ -41,4 +41,24 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">Detail</div>
+                </div>
+                <div class="panel-body">
+                    <p>Nama kelas : <b class="ml-half-1">{{$kelas->nama_kelas}}</b></p>
+                    <p>Kompetensi keahlian : <b class="ml-half-1">{{$kelas->kompetensi_keahlian}}</b></p>
+                    <p>Daftar murid :
+                        <ul>
+                            @foreach ($kelas->siswa as $item)
+                                <li><b class="ml-half-1">{{$item->nama}}</b></li>
+                            @endforeach
+                        </ul> 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

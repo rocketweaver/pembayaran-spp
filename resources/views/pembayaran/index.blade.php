@@ -18,7 +18,7 @@
         <div class="panel-body">
             <div class="row">
                 <form action="{{route('pembayaran.index')}}" class="form-auth-small" method="GET">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <label for="bulan_or_tahun" class="control-label sr-only">Bulan atau Tahun</label>
                         <input type="text" name="bulan_or_tahun" class="form-control" id="bulan_or_tahun" placeholder="Ketikkan bulan atau tahun pembayaran">
                     </div>
@@ -41,11 +41,9 @@
                         <th>Tanggal Pembayaran</th>
                         <th>Bulan Dibayar</th>
                         <th>Tahun Dibayar</th>
+                        <th>Jumlah Bayar</th>
                         <th>SPP</th>
-                        <th>Total Pembayaran</th>
-                        @if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
-                            <th>Aksi</th>
-                        @endif
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,12 +69,12 @@
                             <td>{{$item->tgl_bayar}}</td>
                             <td>{{$item->bulan_dibayar}}</td>
                             <td>{{$item->tahun_dibayar}}</td>
+                            <td>Rp{{number_format($item->jumlah_bayar, 2, ',', '.')}}</td>
                             @if (is_null($item->nisn))
                                 <td class="text-danger">Kosong</td>
                             @else
-                                <td>{{$item->siswa->spp->nominal}}</td>
+                                <td>Rp{{number_format($item->siswa->spp->nominal, 2, ',', '.')}}</td>
                             @endif
-                            <td>{{$item->jumlah_bayar}}</td>
                             @if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
                                 <td>
                                     <form action="{{route('pembayaran.destroy', $item->id_pembayaran)}}" method="post">
@@ -87,6 +85,12 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o mr-sm"></i> Hapus</button>
                                     </form>  
+                                </td>
+                            @elseif (auth()->user()->level == 'siswa')
+                                <td>
+                                    <a href="{{route('pembayaran.detail', $item->id_pembayaran)}}">
+                                        <button class="btn btn-primary"><i class="fa fa-info mr-sm"></i> Detail</button>
+                                    </a>
                                 </td>
                             @endif
                         </tr>                            
