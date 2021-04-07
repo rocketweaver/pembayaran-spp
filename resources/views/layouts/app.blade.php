@@ -64,7 +64,6 @@
 				<div class="sidebar-scroll">
 					<nav>
 						<ul class="nav mt-quarter">
-							<li><a href="{{route('dashboard.index')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 							@if (auth()->user()->level == 'admin')
 								<li>
 									<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-database"></i> <span>Kumpulan Tabel</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

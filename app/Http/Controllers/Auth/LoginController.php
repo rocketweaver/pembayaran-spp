@@ -42,9 +42,13 @@ class LoginController extends Controller
         ]);
 
         if (!auth()->attempt($request->only('username', 'password'))) {
-            return back()->with('status', 'Data tidak valid.');
+            return back()->with('status', 'data tidak valid');
         }
-        return redirect()->route('dashboard.index');
+        
+        if(auth()->user()->level != 'siswa') {
+            return redirect()->route('pembayaran.index');
+        }
+        return redirect()->route('pembayaran.show', auth()->user()->nisn);
     }
 
     /**

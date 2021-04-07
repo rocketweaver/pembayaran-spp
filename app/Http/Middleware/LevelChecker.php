@@ -16,37 +16,10 @@ class LevelChecker
      */
     public function handle(Request $request, Closure $next, ...$levels)
     {
-        // $currentRouteName = Route::currentRouteName();
-        // $userLevel = auth()->user()->level;
-
         if (in_array($request->user()->level, $levels)) {
             return $next($request);
         } else {
             return abort(403, 'Halaman tidak ditemukan.');
         }
     }
-
-    // private function userAccessRole()
-    // {
-    //     return [
-    //         'admin' => [
-    //             'dashboard',
-    //             'history-pembayaran',
-    //             'kelas',
-    //             'pembayaran',
-    //             'petugas',
-    //             'siswa',
-    //             'spp'
-    //         ],
-    //         'petugas' => [
-    //             'dashboard',
-    //             'history-pembayaran',
-    //             'pembayaran',
-    //         ],
-    //         'siswa' => [
-    //             'dashboard',
-    //             'history-pembayaran',
-    //         ]
-    //     ];
-    // }
 }
