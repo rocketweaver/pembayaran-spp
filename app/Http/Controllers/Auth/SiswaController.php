@@ -53,7 +53,7 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nisn' => 'required|max:10',
+            'nisn' => 'required|unique|max:10',
             'nis' => 'required|max:8',
             'nama' => 'required|string|max:35',
             'kelas' => 'required',
@@ -158,7 +158,6 @@ class SiswaController extends Controller
     public function destroy($nisn)
     {
         $siswa = Siswa::findOrFail($nisn);
-
         $siswa->delete();
 
         return Helper::successMessage($siswa, 'dihapus', 'siswa');

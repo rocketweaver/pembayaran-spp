@@ -18,7 +18,7 @@
         <div class="panel-body">
             <div class="row">
                 <form action="{{route('petugas.index')}}" class="form-auth-small" method="GET">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label for="nama_or_level" class="control-label sr-only">Nama Kelas</label>
                         <input type="text" name="nama_or_level" class="form-control" id="nama_or_level" placeholder="Ketikkan nama atau level petugas">
                     </div>
@@ -56,14 +56,18 @@
                             <td>{{$item->nama_petugas}}</td>
                             <td>{{$item->level}}</td>
                             <td>
-                                <form action="{{route('petugas.destroy', $item->id_petugas)}}" method="post">
-                                    <a href="{{route('petugas.edit', $item->id_petugas)}}">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-edit mr-sm"></i> Edit</button>
-                                    </a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o mr-sm"></i> Hapus</button>
-                                </form>
+                                @if ($item->username != 'arb002')
+                                    <form action="{{route('petugas.destroy', $item->id_petugas)}}" method="post">
+                                        <a href="{{route('petugas.edit', $item->id_petugas)}}">
+                                            <button type="button" class="btn btn-warning"><i class="fa fa-edit mr-sm"></i> Edit</button>
+                                        </a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o mr-sm"></i> Hapus</button>
+                                    </form>
+                                @else
+                                    <span class="text-danger">Admin Permanen</span>
+                                @endif
                             </td>
                         </tr>                            
                     @endforeach

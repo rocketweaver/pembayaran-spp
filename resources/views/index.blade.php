@@ -8,6 +8,7 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
+								
 								<div class="logo text-center"><img src="{{asset('img/logo.png')}}" alt="Klorofil Logo"></div>
 								<p class="lead">Login to your account</p>
 							</div>
@@ -39,6 +40,30 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
 							</form>
+							<a href="#" id="info-user" data-toggle="modal" data-target="#userInfoModal"><i class="fa fa-info-circle mr-1"></i>Tata cara penggunaan website</a>
+							<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="userInfoModal" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									  <h4 class="modal-title" id="myModalLabel">Tata Cara Penggunaan Website</h4>
+									</div>
+									<div class="modal-body text-left">
+										<p>Untuk menggunakan website ini, Anda harus mengikuti langkah - langkah di bawah:</p>
+										<ol>
+											<li>Isi username dengan <b>arb002</b> dan password dengan <b>arbhy123</b></li>
+											<li>Tambahkan data pada tabel petugas yang diisi level petugas dan siswa sehingga Anda bisa login sebagai petugas atau siswa</li>
+											<li><i>Voila!</i> Sekarang Anda bisa mencoba fitur - fitur yang ada di dalamnya</li>
+										</ol>
+									  	<p><small><span class="text-danger">Note: </span> Apabila terjadi error, silakan lapor error tersebut melalui email ke <b>arbhyaditya@gmail.com</b></small></p>
+										<p class="text-right"><small>&copy;<i>Arbhy Adityabrahma, </i>4 April 2021</small></p>
+									</div>
+									<div class="modal-footer">
+									  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								  </div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="right">

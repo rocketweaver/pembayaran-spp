@@ -259,7 +259,10 @@ html.fullscreen-bg #wrapper {
 
 .navbar-nav > li > .dropdown-menu {
   padding: 0;
-  min-width: 200px; }
+  padding-bottom: 10px;
+  min-width: 200px; 
+  text-align: center;
+}
 
 .navbar-nav .dropdown-menu {
   border-top: 2px solid #ACB0B5; }
@@ -931,8 +934,17 @@ ul.activity-list > li {
   text-align: right; }
 
 @media screen and (max-width: 768px) {
+  
+  .panel .panel-body {
+    overflow-x: scroll;
+  }
   .custom-tabs-line ul li.active > a {
-    margin-bottom: -1px; } }
+    margin-bottom: -1px; }
+
+  .btn-md {
+    margin-top: 15px;
+  }
+}
 
 .tab-pane {
   padding: 25px 15px; }
@@ -1136,6 +1148,7 @@ ul.activity-list > li {
  * PAGE: PROFILE
  ********************/
 .panel-profile {
+  padding-top: 0;
   position: relative; }
 
 .profile-left {
@@ -1173,13 +1186,15 @@ ul.activity-list > li {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); }
+    background-color: linear-gradient(to top, #051937, #004d7a, #008793, #00bf72, #a8eb12) }
   .profile-header .profile-main {
     position: relative;
     padding: 20px;
-    background-image: url("../../assets/img/profile-bg.png");
+    background-image: url("../../img/profile-bg.png");
     background-repeat: no-repeat;
-    background-size: cover; }
+    background-size: cover; 
+    text-shadow: 2px 2px 3px #1a1919a8;
+  }
   .profile-header .name {
     margin: 8px 0 0 0;
     font-size: 22px; }
@@ -1201,7 +1216,7 @@ ul.activity-list > li {
       height: 8px;
       margin-right: 3px; }
     .profile-header .online-status.status-available:before {
-      background-color: #41B314; }
+      background: linear-gradient(to bottom, #54bc3e 0%,#aee850 100%); }
   .profile-header .profile-stat {
     position: relative;
     background-color: #00AAFF; }
@@ -1225,8 +1240,6 @@ ul.activity-list > li {
     .profile-header .profile-stat .stat-item:after {
       display: none; } }
 
-.profile-detail {
-  padding-bottom: 30px; }
 
 .profile-info {
   padding: 0 20px;
@@ -1766,21 +1779,40 @@ ul.activity-timeline > li {
 
 /* custom css */
 
+#info-user {
+  display: block;
+  margin-top: 15px;
+  font-size: 12px
+}
+
+#info-user:not(i) {
+  text-decoration: underline
+}
+
+td, .btn {
+  margin-top: 10px
+}
+
 .mr-1 {
   margin-right: 10px
 }
+
 .mt-quarter {
   margin-top: 15px
 }
+
 .ml-half-1 {
   margin-left: 5px 
 }
+
 .mt-2 {
   margin-top: 20px
 }
+
 .mr-sm {
   margin-right: 5px
 }
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto
@@ -1790,10 +1822,14 @@ ul.activity-timeline > li {
   border: 1px solid #F9354C
 }
 
-.logout-btn {
-  background: white;
+#logout-btn {
+  display: block;
+  margin: auto;
+  background: rgb(233, 5, 5);
+  color: white;
   border: none;
-  width: 100%;
+  border-radius: 2px;
+  width: 92%;
   padding: 10px
 }
 

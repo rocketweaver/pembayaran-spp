@@ -36,7 +36,7 @@
 					<div id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user.png')}}" class="img-circle" alt="Avatar"> <span>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user-medium.png')}}" class="img-circle" alt="Avatar"> <span>
 									@if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
 										{{auth()->user()->petugas->nama_petugas}}
 									@elseif (auth()->user()->level == 'siswa')
@@ -47,9 +47,18 @@
 							</a>
 								<ul class="dropdown-menu">
 									<li>
+										<a 
+											@if (auth()->user()->level != 'siswa')
+												href="{{route('users.edit', auth()->user()->id_petugas)}}"
+											@else
+												href="{{route('users.edit', auth()->user()->nisn)}}"
+											@endif
+										><i class="lnr lnr-user"></i> <span>My Profile</span></a>
+									</li>
+									<li>
 										<form action="{{route('logout')}}" method="POST">
 											@csrf
-											<button type="submit" class="logout-btn"><i class="lnr lnr-exit"></i> <span>Logout</span></button>
+											<button type="submit" id="logout-btn"><i class="lnr lnr-exit"></i> <span>Logout</span></button>
 										</form>
 									</li>
 								</ul>

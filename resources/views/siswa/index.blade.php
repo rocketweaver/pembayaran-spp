@@ -18,7 +18,7 @@
         <div class="panel-body">
             <div class="row">
                 <form action="{{route('siswa.index')}}" class="form-auth-small" method="GET">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <label for="nama_or_kelas" class="control-label sr-only">Nama Kelas</label>
                         <input type="text" name="nama_or_kelas" class="form-control" id="nama_or_kelas" placeholder="Ketikkan nama atau kelas siswa">
                     </div>

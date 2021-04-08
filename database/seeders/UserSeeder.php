@@ -42,9 +42,9 @@ class UserSeeder extends Seeder
         ]);
 
         $petugas = Petugas::create([
-            'username' => 'agus_m123',
-            'password' => 'agus123',
-            'nama_petugas' => 'Agus Musa',
+            'username' => 'arb002',
+            'password' => 'arb123',
+            'nama_petugas' => 'Arbhy Adityabrahma',
             'level' => 'admin'
         ]);
 

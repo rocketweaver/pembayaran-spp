@@ -94,8 +94,11 @@ class PetugasController extends Controller
     public function edit($id)
     {
         $petugas = Petugas::find($id);
-        return view('petugas.edit', ['petugas' => $petugas]);
+        if ($petugas->id != 6) {
+            return view('petugas.edit', ['petugas' => $petugas]);
+        }
 
+        abort(403, "Unauthorized action.");
     }
 
     /**
@@ -108,31 +111,34 @@ class PetugasController extends Controller
     public function update(Request $request, $id)
     {
         $petugas = Petugas::findOrFail($id);
-        $user = User::where('id_petugas', $id);
-
-        $this->validate($request, [
-            'nama_petugas' => 'required|max:35',
-            'username' => 'required|max:25',
-            'password' => 'required|confirmed',
-            'level' => 'required'
-        ]);
-
-        DB::transaction(function () use($request, $petugas, $user) {
-            $petugas->update([
-                'nama_petugas' => $request->nama_petugas,
-                'username' => $request->username,
-                'password' => $request->password,
-                'level' => $request->level
-            ]);
+        if($petugas->id != 6) {
+            $user = User::where('id_petugas', $id);
             
-            $user->update([
-                'username' => $request->username,
-                'password' => Hash::make($request->password),
-                'level' => $request->level
+            $this->validate($request, [
+                'nama_petugas' => 'required|max:35',
+                'username' => 'required|max:25',
+                'password' => 'required|confirmed',
+                'level' => 'required'
             ]);
-        });
 
-        return Helper::successMessage($request, 'diperbarui', 'petugas');
+            DB::transaction(function () use($request, $petugas, $user) {
+                $petugas->update([
+                    'nama_petugas' => $request->nama_petugas,
+                    'username' => $request->username,
+                    'password' => $request->password,
+                    'level' => $request->level
+                ]);
+                
+                $user->update([
+                    'username' => $request->username,
+                    'password' => Hash::make($request->password),
+                    'level' => $request->level
+                ]);
+            });
+
+            return Helper::successMessage($request, 'diperbarui', 'petugas');
+        }
+        abort(403, "Anda tidak mempunyai izin.");
     }
 
     /**
@@ -145,8 +151,11 @@ class PetugasController extends Controller
     {
         $petugas = Petugas::findOrFail($id);
 
-        $petugas->delete();
-
-        return Helper::successMessage($petugas, 'dihapus', 'petugas');
+        if($petugas->id != 6) {
+            $petugas->delete();
+    
+            return Helper::successMessage($petugas, 'dihapus', 'petugas');
+        }
+        abort(403, "Anda tidak mempunyai izin.");
     }
 }
