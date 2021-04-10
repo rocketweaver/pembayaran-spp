@@ -20,11 +20,11 @@ class PetugasController extends Controller
     public function index(Request $request)
     {
         if(!is_null($request->nama_or_level)) {
-            $filteredPetugas = Petugas::where('level', $request->nama_or_level)->orWhere('nama_petugas', 'like', '%'.$request->nama_or_level.'%')->orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(10);
+            $filteredPetugas = Petugas::where('level', $request->nama_or_level)->orWhere('nama_petugas', 'like', '%'.$request->nama_or_level.'%')->orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(50);
             return view('petugas.index', ['filteredPetugas' => $filteredPetugas]);
         }
 
-        $petugas = Petugas::orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(10);
+        $petugas = Petugas::orderBy('level', 'asc')->orderBy('nama_petugas', 'asc')->paginate(50);
         return view('petugas.index', ['petugas' => $petugas]);
     }
 
@@ -48,7 +48,7 @@ class PetugasController extends Controller
     {
         $this->validate($request, [
             'nama_petugas' => 'required|max:35',
-            'username' => 'required|max:25',
+            'username' => 'required|max:25|unique',
             'password' => 'required|confirmed',
             'level' => 'required'
         ]);
@@ -116,7 +116,7 @@ class PetugasController extends Controller
             
             $this->validate($request, [
                 'nama_petugas' => 'required|max:35',
-                'username' => 'required|max:25',
+                'username' => 'required|max:25|unique',
                 'password' => 'required|confirmed',
                 'level' => 'required'
             ]);

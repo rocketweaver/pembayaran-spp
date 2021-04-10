@@ -27,7 +27,7 @@
 			<!-- NAVBAR -->
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="brand">
-					<a href="index.html"><img src="{{asset('img/logo-navbar.png')}}" alt="Klorofil Logo" class="img-responsive logo"></a>
+					<img src="{{asset('img/logo-navbar.png')}}" alt="Klorofil Logo" class="img-responsive logo">
 				</div>
 				<div class="container-fluid">
 					<div class="navbar-btn">

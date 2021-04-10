@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middlewae\LevelChecker;
-// use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\KelasController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;

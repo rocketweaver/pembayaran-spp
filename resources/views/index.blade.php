@@ -51,11 +51,18 @@
 									<div class="modal-body text-left">
 										<p>Untuk menggunakan website ini, Anda harus mengikuti langkah - langkah di bawah:</p>
 										<ol>
-											<li>Isi username dengan <b>arb002</b> dan password dengan <b>arbhy123</b></li>
+											<li>Isi username dengan <b>arb002</b> dan password dengan <b>arb123</b></li>
 											<li>Tambahkan data pada tabel petugas yang diisi level petugas dan siswa sehingga Anda bisa login sebagai petugas atau siswa</li>
 											<li><i>Voila!</i> Sekarang Anda bisa mencoba fitur - fitur yang ada di dalamnya</li>
 										</ol>
-									  	<p><small><span class="text-danger">Note: </span> Apabila terjadi error, silakan lapor error tersebut melalui email ke <b>arbhyaditya@gmail.com</b></small></p>
+									  	<p>
+											<small><span class="text-danger">Note: </span> 
+												<ul>
+													<li>Jika ingin login sebagai siswa, gunakan NIS sebagai username dan password</li>
+													<li>Apabila terjadi error, silakan lapor error tersebut melalui email ke <b>arbhyaditya@gmail.com</b></li>
+												</ul>
+											</small>
+										</p>
 										<p class="text-right"><small>&copy;<i>Arbhy Adityabrahma, </i>4 April 2021</small></p>
 									</div>
 									<div class="modal-footer">

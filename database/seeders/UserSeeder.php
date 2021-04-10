@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         $siswa = Siswa::create([
             'nisn' => '1234567891',
             'nis' => '23456789',
-            'nama' => 'Arbhy Adityabrahma',
+            'nama' => 'Aldian Nur Musa',
             'id_kelas' => $kelas->id_kelas,
             'alamat' => 'Jalan Junaedi No. 48',
             'no_telp' => '089648311485',

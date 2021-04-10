@@ -107,7 +107,7 @@
                     <p>Kelas: <b class="ml-half-1">{{$siswa->kelas->nama_kelas}}</b></p>
                     <p>Alamat : <b class="ml-half-1">{{$siswa->alamat}}</b></p>
                     <p>No. Telepon : <b class="ml-half-1">{{$siswa->no_telp}}</b></p>
-                    <p>Nominal SPP : <b class="ml-half-1">{{$siswa->spp->nominal}}</b></p>
+                    <p>Nominal SPP : <b class="ml-half-1">Rp{{number_format($siswa->spp->nominal, 2, ',', '.')}}</b></p>
                     <p>Tahun SPP : <b class="ml-half-1">{{$siswa->spp->tahun}}</b></p>
                 </div>
             </div>

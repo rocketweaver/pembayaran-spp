@@ -21,7 +21,7 @@ class KelasController extends Controller
             return view('kelas.index', ['filteredKelas' => $filteredKelas]);
         }
 
-        $kelas = Kelas::orderBy('kompetensi_keahlian', 'asc')->orderBy('nama_kelas', 'asc')->paginate(10);
+        $kelas = Kelas::orderBy('kompetensi_keahlian', 'asc')->orderBy('nama_kelas', 'asc')->paginate(50);
         return view('kelas.index', ['kelas' => $kelas]);
     }
 
@@ -44,7 +44,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_kelas' => 'required|max:10',
+            'nama_kelas' => 'required|max:10|unique',
             'kompetensi_keahlian' => 'required|max:50',
         ]);
 
@@ -90,7 +90,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
 
         $this->validate($request, [
-            'nama_kelas' => 'required|max:10',
+            'nama_kelas' => 'required|max:10|unique',
             'kompetensi_keahlian' => 'required|max:50',
         ]);
 

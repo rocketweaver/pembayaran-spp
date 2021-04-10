@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\User;
@@ -25,10 +26,10 @@ class SiswaController extends Controller
         if(!is_null($namaOrKelas)) {
             $filteredSiswa = Siswa::whereHas('kelas', function ($query) use($namaOrKelas) {
                 $query->where('nama_kelas', 'like', '%'.$namaOrKelas.'%');
-            })->orWhere('nama', 'like', '%'.$namaOrKelas.'%')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(10);
+            })->orWhere('nama', 'like', '%'.$namaOrKelas.'%')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(50);
             return view('siswa.index', ['filteredSiswa' => $filteredSiswa]);
         }
-        $siswa = Siswa::orderBy('id_kelas')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(10);
+        $siswa = Siswa::orderBy('id_kelas')->orderBy('id_kelas')->orderBy('nama', 'asc')->paginate(50);
         return view('siswa.index', ['siswa' => $siswa]);
     }
 

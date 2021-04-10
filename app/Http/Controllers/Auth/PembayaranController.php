@@ -22,10 +22,10 @@ class PembayaranController extends Controller
     {
         $bulanOrTahun = $request->bulan_or_tahun; 
         if (!is_null($bulanOrTahun)) {
-            $filteredPembayaran = Pembayaran::where('bulan_dibayar', 'like', '%'.$bulanOrTahun.'%')->orWhere('tahun_dibayar', 'like', '%'.$bulanOrTahun.'%')->orderBy('tgl_bayar', 'asc')->paginate(10);
+            $filteredPembayaran = Pembayaran::where('bulan_dibayar', 'like', '%'.$bulanOrTahun.'%')->orWhere('tahun_dibayar', 'like', '%'.$bulanOrTahun.'%')->orderBy('tgl_bayar', 'asc')->paginate(50);
             return view('pembayaran.index', ['filteredPembayaran' => $filteredPembayaran]);
         }
-        $pembayaran = Pembayaran::orderBy('tgl_bayar', 'asc')->paginate(10);
+        $pembayaran = Pembayaran::orderBy('tgl_bayar', 'asc')->paginate(50);
         return view('pembayaran.index', ['pembayaran' => $pembayaran]);
     }
 
@@ -92,8 +92,7 @@ class PembayaranController extends Controller
     public function show($nisn)
     {
         if (auth()->user()->level == 'siswa') {
-            $pembayaran = Pembayaran::where('nisn', $nisn)->orderBy('tgl_bayar')->paginate(10);
-    
+            $pembayaran = Pembayaran::where('nisn', $nisn)->orderBy('tgl_bayar')->paginate(50);
             return view('pembayaran.index', ['pembayaran' => $pembayaran]);
         }
     }
@@ -119,7 +118,8 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::find($id);
         $petugas = Petugas::all();
         $siswa = Siswa::all();
-        return view('pembayaran.edit', ['pembayaran' => $pembayaran, 'petugas' => $petugas, 'siswa' => $siswa]);
+        $pembayaranTerkumpul = Pembayaran::where('nisn', '=', $pembayaran->nisn)->sum('jumlah_bayar');
+        return view('pembayaran.edit', ['pembayaran' => $pembayaran, 'petugas' => $petugas, 'siswa' => $siswa, 'pembayaranTerkumpul' => $pembayaranTerkumpul]);
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateSppTable extends Migration
     {
         Schema::create('spp', function (Blueprint $table) {
             $table->increments('id_spp');
-            $table->unsignedInteger('tahun');
+            $table->unsignedInteger('tahun')->unique();
             $table->unsignedInteger('nominal');
         });
     }

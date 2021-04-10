@@ -15,16 +15,4 @@ class Helper
             return back()->with(['error' => 'Data gagal '.$msgType.'!']);
         }
     }
-
-    // public static function failedMessage($param, $msgType, $routeParent)
-    // {
-    //     $param = $param;
-    //     $msgType = $msgType;
-    //     $routeParent = $routeParent;
-    //     if ($param) {
-    //         return redirect()->route($routeParent.'.index')->with(['success' => 'Data berhasil '.$msgType.'!']);
-    //     } else {
-    //         return redirect()->route($routeParent.'.index')->with(['error' => 'Data gagal '.$msgType.'!']);
-    //     }
-    // }
 }

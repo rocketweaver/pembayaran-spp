@@ -42,7 +42,7 @@
                         <th>Bulan Dibayar</th>
                         <th>Tahun Dibayar</th>
                         <th>Jumlah Bayar</th>
-                        <th>SPP</th>
+                        <th>Tahun SPP</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -73,7 +73,7 @@
                             @if (is_null($item->nisn))
                                 <td class="text-danger">Kosong</td>
                             @else
-                                <td>Rp{{number_format($item->siswa->spp->nominal, 2, ',', '.')}}</td>
+                                <td>{{$item->siswa->spp->tahun}}</td>
                             @endif
                             @if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
                                 <td>

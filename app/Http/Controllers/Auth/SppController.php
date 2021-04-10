@@ -17,10 +17,10 @@ class SppController extends Controller
     public function index(Request $request)
     {
         if(!is_null($request->tahun)) {
-            $filteredSpp = Spp::where('tahun', 'like', '%'.$request->tahun.'%')->orderBy('tahun', 'asc')->paginate(10);
+            $filteredSpp = Spp::where('tahun', 'like', '%'.$request->tahun.'%')->orderBy('tahun', 'asc')->paginate(50);
             return view('spp.index', ['filteredSpp' => $filteredSpp]);
         }
-        $spp = Spp::orderBy('tahun', 'asc')->paginate(10);
+        $spp = Spp::orderBy('tahun', 'asc')->paginate(50);
         return view('spp.index', ['spp' => $spp]);
     }
 
@@ -43,7 +43,7 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tahun' => 'required|integer'
+            'tahun' => 'required|integer|unique'
         ]);
 
         Spp::create([
@@ -90,7 +90,7 @@ class SppController extends Controller
         $spp = spp::findOrFail($id);
 
         $this->validate($request, [
-            'tahun' => 'required|integer',
+            'tahun' => 'required|integer|unique',
             'nominal' => 'required|integer',
         ]);
 
