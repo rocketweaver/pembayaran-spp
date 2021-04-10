@@ -128,10 +128,10 @@
 	@endguest
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="{{secure_asset('vendor/jquery/jquery.min.js')}}"></script>
-	<script src="{{secure_asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-	<script src="{{secure_asset('vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-	<script src="{{secure_asset('vendor/toastr/toastr.min.js')}}"></script>
+	<script src="{{secure_asset('jquery/jquery.min.js')}}"></script>
+	<script src="{{secure_asset('bootstrap/js/bootstrap.min.js')}}"></script>
+	<script src="{{secure_asset('jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+	<script src="{{secure_asset('toastr/toastr.min.js')}}"></script>
 	<script src="{{secure_asset('scripts/klorofil-common.js')}}"></script>
 	<script>
 		@if (session()->has('success'))
