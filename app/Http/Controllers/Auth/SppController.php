@@ -90,7 +90,7 @@ class SppController extends Controller
         $spp = spp::findOrFail($id);
 
         $this->validate($request, [
-            'tahun' => 'required|integer|unique:spp',
+            'tahun' => 'required|integer',
             'nominal' => 'required|integer',
         ]);
 

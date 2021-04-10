@@ -90,7 +90,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
 
         $this->validate($request, [
-            'nama_kelas' => 'required|max:10|unique:kelas',
+            'nama_kelas' => 'required|max:10',
             'kompetensi_keahlian' => 'required|max:50',
         ]);
 
