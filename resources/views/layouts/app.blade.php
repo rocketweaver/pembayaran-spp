@@ -7,17 +7,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="{{asset('vendor/linearicons/style.css')}}">
-	<link rel="stylesheet" href="{{asset('vendor/toastr/toastr.min.css')}}">
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendor/linearicons/style.css">
+	<link rel="stylesheet" href="vendor/toastr/toastr.min.css">
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="{{asset('css/main.css')}}">
+	<link rel="stylesheet" href="css/main.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('img/favicon.png')}}">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 			<!-- NAVBAR -->
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="brand">
-					<img src="{{asset('img/logo-navbar.png')}}" alt="Klorofil Logo" class="img-responsive logo">
+					<img src="img/logo-navbar.png')}}" alt="Klorofil Logo" class="img-responsive logo">
 				</div>
 				<div class="container-fluid">
 					<div class="navbar-btn">
@@ -36,7 +36,7 @@
 					<div id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('img/user-medium.png')}}" class="img-circle" alt="Avatar"> <span>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/user-medium.png')}}" class="img-circle" alt="Avatar"> <span>
 									@if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
 										{{auth()->user()->petugas->nama_petugas}}
 									@elseif (auth()->user()->level == 'siswa')
@@ -128,11 +128,11 @@
 	@endguest
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-	<script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-	<script src="{{asset('vendor/toastr/toastr.min.js')}}"></script>
-	<script src="{{asset('scripts/klorofil-common.js')}}"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="vendor/toastr/toastr.min.js"></script>
+	<script src="scripts/klorofil-common.js"></script>
 	<script>
 		@if (session()->has('success'))
 			toastr.success('{{ session('success') }}', 'BERHASIL!');
