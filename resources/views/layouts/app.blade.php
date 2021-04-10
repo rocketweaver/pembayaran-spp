@@ -7,10 +7,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="{{secure_asset('vendor/bootstrap/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{secure_asset('vendor/font-awesome/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="{{secure_asset('vendor/linearicons/style.css')}}">
-	<link rel="stylesheet" href="{{secure_asset('vendor/toastr/toastr.min.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('font-awesome/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('linearicons/style.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('toastr/toastr.min.css')}}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{secure_asset('css/main.css')}}">
 	<!-- GOOGLE FONTS -->
