@@ -44,7 +44,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_kelas' => 'required|max:10|unique',
+            'nama_kelas' => 'required|max:10|unique:kelas',
             'kompetensi_keahlian' => 'required|max:50',
         ]);
 
@@ -90,7 +90,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
 
         $this->validate($request, [
-            'nama_kelas' => 'required|max:10|unique',
+            'nama_kelas' => 'required|max:10|unique:kelas',
             'kompetensi_keahlian' => 'required|max:50',
         ]);
 

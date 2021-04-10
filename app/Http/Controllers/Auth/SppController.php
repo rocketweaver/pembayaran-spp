@@ -43,7 +43,7 @@ class SppController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tahun' => 'required|integer|unique'
+            'tahun' => 'required|integer|unique:spp'
         ]);
 
         Spp::create([
@@ -90,7 +90,7 @@ class SppController extends Controller
         $spp = spp::findOrFail($id);
 
         $this->validate($request, [
-            'tahun' => 'required|integer|unique',
+            'tahun' => 'required|integer|unique:spp',
             'nominal' => 'required|integer',
         ]);
 

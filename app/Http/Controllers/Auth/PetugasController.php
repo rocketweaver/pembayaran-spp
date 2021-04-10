@@ -48,7 +48,7 @@ class PetugasController extends Controller
     {
         $this->validate($request, [
             'nama_petugas' => 'required|max:35',
-            'username' => 'required|max:25|unique',
+            'username' => 'required|max:25|unique:petugas',
             'password' => 'required|confirmed',
             'level' => 'required'
         ]);
@@ -116,7 +116,7 @@ class PetugasController extends Controller
             
             $this->validate($request, [
                 'nama_petugas' => 'required|max:35',
-                'username' => 'required|max:25|unique',
+                'username' => 'required|max:25|unique:petugas',
                 'password' => 'required|confirmed',
                 'level' => 'required'
             ]);
